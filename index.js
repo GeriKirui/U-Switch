@@ -1,5 +1,6 @@
 const express = require('express');
 const Datastore = require('nedb');
+const fs = require('fs');
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
 
@@ -12,12 +13,28 @@ database.loadDatabase();
 //A function that handles a get request from the CLIENT
 //The client is the one getting
 app.get('/api', (request, response) =>{
+
+    let maxIndex = (data) =>{
+        let maxTime = 0;
+        let index = 0;
+        
+        for(let i = 0; i < data.length; i++){
+          if(data[i].timestamp > maxTime){
+            maxTime = data[i].timestamp;
+            index = i;
+          }
+        }
+        return index;
+        }
+
     database.find({}, (err,data) =>{
         if(err){
             response.end();
             return;
         }
         response.json(data);
+        item = data[maxIndex(data)];
+        fs.writeFileSync('public/state.txt', item.state);
     });
 });
 

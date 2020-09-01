@@ -8,28 +8,55 @@
   </head>
   <body>
       <h1>
-          History of States
       </h1>
       <script>
           getData();
           async function getData(){
             const response = await fetch('/api');
             const data = await response.json();
+            
+            const root = document.createElement('div');
+            const state = document.createElement('div');
+            const date = document.createElement('div');
 
-            for(item of data){
-                const root = document.createElement('div');
-                const state = document.createElement('div');
-                const date = document.createElement('div');
+            let maxIndex = (data) =>{
+              let maxTime = 0;
+              let index = 0;
+              
+              for(let i = 0; i < data.length; i++){
+                if(data[i].timestamp > maxTime){
+                  maxTime = data[i].timestamp;
+                  index = i;
+                }
+              }
+              return index;
+              }
 
-                state.textContent = `${item.state}`;
-                const dateString = new Date(item.timestamp).toLocaleString();
-                date.textContent = dateString;
+            item = data[maxIndex(data)];
 
-                root.append(state, date);
-                document.body.append(root);
+            state.textContent = `${item.state}`;
+            date.textContent = `${item.timestamp}`;
+            // const dateString = new Date(item.timestamp).toLocaleString();
+            // date.textContent = dateString;
 
-            }
-            console.log(data);
+            root.append(state);
+            document.body.append(root);
+
+
+            // for(item of data){
+            //     const root = document.createElement('div');
+            //     const state = document.createElement('div');
+            //     const date = document.createElement('div');
+
+            //     state.textContent = `${item.state}`;
+            //     const dateString = new Date(item.timestamp).toLocaleString();
+            //     date.textContent = dateString;
+
+            //     root.append(state, date);
+            //     document.body.append(root);
+
+            // }
+            // console.log(data);
           }
       </script>
   </body>

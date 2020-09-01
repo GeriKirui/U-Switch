@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+      <h1>
+          History of States
+      </h1>
+      <script>
+          getData();
+          async function getData(){
+            const response = await fetch('/api');
+            const data = await response.json();
+
+            for(item of data){
+                const root = document.createElement('div');
+                const state = document.createElement('div');
+                const date = document.createElement('div');
+
+                state.textContent = `${item.state}`;
+                const dateString = new Date(item.timestamp).toLocaleString();
+                date.textContent = dateString;
+
+                root.append(state, date);
+                document.body.append(root);
+
+            }
+            console.log(data);
+          }
+      </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>U-Switch</title>
+    <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+    <!-- <script defer src="./index.js"></script> -->
+</head>
+
+<body>
+    <h1> U-Switch </h1>
+    Press '1' to switch on or '0' to switch off, then press 'submit'.  <input type="text" id="state"/><br><br> 
+    <input type="submit" value="Submit" onclick="sendData()"/><br>
+    <script>
+
+        function sendData(){
+            let state = document.getElementById("state").value;
+
+            const data = {state};
+
+            const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+
+            fetch('/api', options);
+            }
+    </script>
+    <div class="center"></div>
+</body>
+
+</html>

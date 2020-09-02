@@ -13,13 +13,15 @@ database.loadDatabase();
 //A function that handles a get request from the CLIENT
 //The client is the one getting
 app.get('/api', (request, response) =>{
-    database.find({}, (err,data) =>{
-        if(err){
-            response.end();
-            return;
-        }
-        response.json(data);
-    });
+    // database.find({}, (err,data) =>{
+    //     if(err){
+    //         response.end();
+    //         return;
+    //     }
+    //     response.json(data);
+        // let x = fs.readFileSync(public/userState.txt)
+        //response.json(x)
+    // });
 });
 
 //A function that handles a post request from the CLIENT

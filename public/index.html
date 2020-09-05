@@ -12,6 +12,7 @@
 <body>
     <h1> U-Switch </h1>
     <input type="checkbox" id="toggleSwitch" onclick="func()"/><br>
+    <span>Switch Status: </span><span id="switchStatus"></span>
     <script>
 
         let func = function () {
@@ -35,6 +36,17 @@
         else {
             sendData(0);
         }
+        
+        getData();      
+    }
+
+    async function getData(){
+
+        const response = await fetch('/api');
+        const data = await response.json();
+        
+        const state = document.getElementById("switchStatus");
+        state.textContent = data;
     }
     </script>
     <div class="center"></div>

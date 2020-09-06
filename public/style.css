@@ -1,0 +1,113 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+}
+
+h1{
+    font-family: sans-serif;
+    color: white;
+    font-size: 60px;
+    position: absolute;
+
+    left: 40%;
+    top: 10%;
+}
+
+.info{
+    position: absolute;
+    left: 10%;
+    top: 40%;
+    outline-style: dotted;
+    height: 40%;
+    width: 80%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#toggleOn{
+    position: absolute;
+    left: 10%;
+    top: 40%;
+    text-align: center;
+    width: 200px;
+    padding: 40px;
+    font-size: 20px;
+    color: #15f433;
+    font-family: poppins;
+    font-weight: 400;
+    border: 5px solid #15f433;
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+#toggleOn:hover{
+    box-shadow: 0 5px 50px 0 #15f433 inset, 0 5px 50px 0 #15f433,
+    0 5px 50px 0 #15f433 inset, 0 5px 50px 0 #15f433;
+    text-shadow: 0 0 5px #15f433, 0 0 5px #15f433;
+}
+
+#toggleOff{
+    position: absolute;
+    left: 35%;
+    top: 40%;
+    text-align: center;
+    width: 200px;
+    padding: 40px;
+    font-size: 20px;
+    color: #DC143C;
+    font-family: poppins;
+    font-weight: 400;
+    border: 5px solid #DC143C;
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+#toggleOff:hover{
+    box-shadow: 0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C,
+    0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C;
+    text-shadow: 0 0 5px #DC143C, 0 0 5px #DC143C;
+}
+
+#getStatus{
+    position: absolute;
+    left: 60%;
+    top: 40%;
+    text-align: center;
+    width: 200px;
+    padding: 40px;
+    font-size: 20px;
+    color: #0000FF;
+    font-family: poppins;
+    font-weight: 400;
+    border: 5px solid #0000FF;
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+#getStatus:hover{
+    box-shadow: 0 5px 50px 0 #0000FF inset, 0 5px 50px 0 #0000FF,
+    0 5px 50px 0 #0000FF inset, 0 5px 50px 0 #0000FF;
+    text-shadow: 0 0 5px #0000FF, 0 0 5px #0000FF;
+}
+
+#switchInfo{
+    position: absolute;
+    color: antiquewhite;
+    top: 100%;
+    left: 40%;
+    text-align: center;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+

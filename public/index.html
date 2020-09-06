@@ -4,52 +4,49 @@
 <head>
     <meta charset="utf-8">
     <title>U-Switch</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <!-- <script defer src="./index.js"></script> -->
 </head>
 
-<body>
+<body style="overflow:hidden;">
     <h1> U-Switch </h1>
-    <input type="checkbox" id="toggleSwitch" onclick="func()"/><br>
-    <span>Switch Status: </span><span id="switchStatus"></span>
+    <div class="info">
+        <div type="button" id="toggleOn" onclick="sendData(1)">Toggle On</div>
+        <div type="button" id="toggleOff" onclick="sendData(0)">Toggle Off</div>
+        <div type="button" id="getStatus" onclick="getData()">Switch status</div>
+        <span id="switchInfo">
+        <span>Switch Status: </span><span id="switchStatus"></span>
+        </span>
+    </div>
+    <!-- <input type="checkbox" id="toggleSwitch" onclick="func()"/><br> -->
     <script>
+        let sendData = (state) => {
+            let data = { state };
 
-        let func = function () {
-            let sendData = (state) => {
-                let data = { state };
-
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-
-                fetch('/api', options);
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
             };
 
-            if(document.querySelector('#toggleSwitch:checked') !== null){
-                sendData(1);
-        }
-        else {
-            sendData(0);
-        }
-        
-        getData();      
-    }
+            fetch('/api', options);
+        };
 
-    async function getData(){
+        async function getData() {
 
-        const response = await fetch('/api');
-        const data = await response.json();
-        
-        const state = document.getElementById("switchStatus");
-        state.textContent = data;
-    }
+            const response = await fetch('/api');
+            const data = await response.json();
+
+            const state = document.getElementById("switchStatus");
+            state.textContent = data;
+        }
     </script>
-    <div class="center"></div>
+    </div>
 </body>
 
 </html>

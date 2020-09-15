@@ -13,12 +13,16 @@
 
 <body style="overflow:hidden;">
     <h1> U-Switch </h1>
-    <div class="info">
+    <div class="buttons">
         <div type="button" id="toggleOn" onclick="sendData(1)">Toggle On</div>
         <div type="button" id="toggleOff" onclick="sendData(0)">Toggle Off</div>
-        <div type="button" id="getStatus" onclick="getData()">Switch status</div>
+        <div type="button" id="getStatus" onclick="getData()">Update status</div>
+    </div>
+
+    <div class="info">
+        <h2> Switch Status </h2>
         <span id="switchInfo">
-        <span>Switch Status: </span><span id="switchStatus"></span>
+            <span id="switchStatus"></span>
         </span>
     </div>
     <!-- <input type="checkbox" id="toggleSwitch" onclick="func()"/><br> -->
@@ -35,6 +39,7 @@
             };
 
             fetch('/api', options);
+            getData();
         };
 
         async function getData() {
@@ -43,7 +48,10 @@
             const data = await response.json();
 
             const state = document.getElementById("switchStatus");
-            state.textContent = data;
+            if(data == 1){state.textContent = "ON";}
+            if(data == 0){state.textContent = "OFF";}
+            const now = new Date().toLocaleString();
+            state.textContent = state.textContent + " (Last updated at " + now +")";
         }
     </script>
     </div>

@@ -2,6 +2,9 @@ body{
     margin: 0;
     padding: 0;
     background-color: #000;
+    background-image: url(img.jpg);
+    background-repeat: no-repeat;
+    background-size: ;
 }
 
 h1{
@@ -10,17 +13,51 @@ h1{
     font-size: 60px;
     position: absolute;
 
-    left: 40%;
+    left: 43%;
+    top: 10%;
+}
+
+h2{
+    font-family: sans-serif;
+    color: white;
+    font-size: 30px;
+    position: absolute;
+
+    left: 5%;
     top: 10%;
 }
 
 .info{
     position: absolute;
-    left: 10%;
-    top: 40%;
-    outline-style: dotted;
-    height: 40%;
-    width: 80%;
+    left: 0%;
+    top: 30%;
+    /* outline-style: dotted; */
+    height: 60%;
+    width: 50%;
+    color: white;
+
+    /* justify-content: center;
+    align-items: center; */
+}
+
+#switchInfo{
+    position: absolute;
+    color: white;
+    top: 25%;
+    left: 5%;
+    text-align: center;
+    font-size: 20px;
+    font-family: sans-serif;
+}
+
+.buttons{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    /* outline-style: dotted; */
+    height: 60%;
+    width: 50%;
+    color: white;
 
     justify-content: center;
     align-items: center;
@@ -28,8 +65,8 @@ h1{
 
 #toggleOn{
     position: absolute;
-    left: 10%;
-    top: 40%;
+    left: 35%;
+    top: 0%;
     text-align: center;
     width: 200px;
     padding: 40px;
@@ -54,7 +91,7 @@ h1{
 #toggleOff{
     position: absolute;
     left: 35%;
-    top: 40%;
+    top: 35%;
     text-align: center;
     width: 200px;
     padding: 40px;
@@ -78,8 +115,8 @@ h1{
 
 #getStatus{
     position: absolute;
-    left: 60%;
-    top: 40%;
+    left: 35%;
+    top: 70%;
     text-align: center;
     width: 200px;
     padding: 40px;
@@ -99,15 +136,5 @@ h1{
     box-shadow: 0 5px 50px 0 #0000FF inset, 0 5px 50px 0 #0000FF,
     0 5px 50px 0 #0000FF inset, 0 5px 50px 0 #0000FF;
     text-shadow: 0 0 5px #0000FF, 0 0 5px #0000FF;
-}
-
-#switchInfo{
-    position: absolute;
-    color: antiquewhite;
-    top: 100%;
-    left: 40%;
-    text-align: center;
-    font-size: 20px;
-    font-family: sans-serif;
 }
 

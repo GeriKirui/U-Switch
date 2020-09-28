@@ -11,7 +11,7 @@ app.use(express.json({ limit: '1mb' }));
 //The client is the one getting
 app.get('/api', (request, response) =>{
         let x = fs.readFileSync('public/switchState.txt', 'utf8')
-        console.log(x);
+        //console.log(x);
         response.json(x);
 });
 
@@ -25,6 +25,14 @@ app.post('/api', (request, response) =>{
 
 //A function that handles a post request from the node MCU
 app.post('/myLastStatus', (request, response) =>{
-    console.log(request.body.state);
+    //console.log(request.body.state);
     fs.writeFileSync('public/switchState.txt', request.body.state);
+});
+
+//A function that gets the scheduling times and stores them on the server
+app.post('/scheduling', (request, response) =>{
+    let schedule = request.body;
+    console.log(schedule.str);
+    fs.writeFileSync('public/schedule.txt', schedule.str);
+    response.json(schedule)
 });

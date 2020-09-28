@@ -12,21 +12,57 @@
 </head>
 
 <body style="overflow:hidden;">
-    <div class="bg-image"></div>
+    <div class="bg-image"></div> 
     <h1> U-Switch </h1>
-    <div class="buttons">
+    <div class="buttons" id="buttonContainer">
         <div type="button" id="toggleOn" onclick="sendData(1)">Toggle On</div>
         <div type="button" id="toggleOff" onclick="sendData(0)">Toggle Off</div>
-        <div type="button" id="getStatus" onclick="getData()">Update status</div>
+        <div type="button" id="schedule" onclick="toggle()">Schedule</div>
     </div>
-
-    <div class="info">
+    <div id="popup">
+        <pre class="tab">Morning                                   Evening</pre>
+        Start Time: &nbsp <input type="text" placeholder = "hh:mm" id="startTime1"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="startTime2"><br><br>
+        Finish Time: <input type="text" id="finishTime1"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="finishTime2">
+        <div type="button" id="closeButton" onclick="toggle()">Close</div>
+        <div type="button" id="updateButton" onclick="processText()">Update</div>
+    </div>
+    <div class="info"   id="infoContainer">
         <h2> Switch Status </h2>
         <span id="switchInfo">
             <span id="switchStatus"></span>
         </span>
     </div>
     <!-- <input type="checkbox" id="toggleSwitch" onclick="func()"/><br> -->
+    <script type="text/javascript">
+        function toggle(){
+            var blur = document.getElementById('infoContainer');
+            blur.classList.toggle('active');
+            var blur = document.getElementById('buttonContainer');
+            blur.classList.toggle('active');
+            var popup = document.getElementById('popup');
+            popup.classList.toggle('active')
+        }
+
+        function processText(){
+            let startTime1 = document.getElementById("startTime1").value;
+            let startTime2 = document.getElementById("startTime2").value;
+            let finishTime1 = document.getElementById("finishTime1").value;
+            let finishTime2 = document.getElementById("finishTime2").value;
+            let str = startTime1 + " "+ finishTime1 + " "+ startTime2 + " "+ finishTime2;
+
+            let scheduleString = { str };
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(scheduleString) 
+            };
+
+            fetch('/scheduling', options);
+        }
+    </script>
     <script>
         let sendData = (state) => {
             let data = { state };
@@ -53,7 +89,11 @@
             if(data == 0){state.textContent = "OFF";}
             const now = new Date().toLocaleString();
             state.textContent = state.textContent + " (Last updated at " + now +")";
+
+            //setTimeout(getData(), 5000);
         }
+
+        //getData();
     </script>
     </div>
 </body>

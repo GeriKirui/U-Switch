@@ -2,6 +2,17 @@ body,html{
     height: 100%;
 }
 
+#infoContainer.active
+{
+    filter: blur(10px);
+}
+
+#buttonContainer.active
+{
+    filter: blur(10px);
+    /* pointer-events: none;
+    user-select: none; */
+}
 
 .bg-image{
     background-image: url(img.jpg);
@@ -22,6 +33,8 @@ h1{
     color: white;
     font-size: 60px;
     position: absolute;
+    -webkit-text-stroke-width: 2.5px;
+    -webkit-text-stroke-color: black;
 
     left: 43%;
     top: 10%;
@@ -32,6 +45,8 @@ h2{
     color: white;
     font-size: 30px;
     position: absolute;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: black;
 
     left: 5%;
     top: 10%;
@@ -41,10 +56,13 @@ h2{
     position: absolute;
     left: 0%;
     top: 30%;
-    /* outline-style: dotted; */
+    outline-style: dotted;
     height: 60%;
     width: 50%;
     color: white;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: black;
+
 
     /* justify-content: center;
     align-items: center; */
@@ -64,7 +82,7 @@ h2{
     position: absolute;
     left: 50%;
     top: 30%;
-    /* outline-style: dotted; */
+    outline-style: dotted;
     height: 60%;
     width: 50%;
     color: white;
@@ -78,15 +96,15 @@ h2{
     left: 35%;
     top: 0%;
     text-align: center;
-    width: 200px;
+    width: 150px;
     padding: 40px;
-    font-size: 20px;
+    font-size: 15px;
     color: #15f433;
     font-family: poppins;
     font-weight: 400;
     border: 5px solid #15f433;
     text-transform: uppercase;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
     cursor: pointer;
     border-radius: 100px;
     transition: 1.5s;
@@ -101,17 +119,17 @@ h2{
 #toggleOff{
     position: absolute;
     left: 35%;
-    top: 35%;
+    top: 33%;
     text-align: center;
-    width: 200px;
+    width: 150px;
     padding: 40px;
-    font-size: 20px;
+    font-size: 15px;
     color: #DC143C;
     font-family: poppins;
     font-weight: 400;
     border: 5px solid #DC143C;
     text-transform: uppercase;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
     cursor: pointer;
     border-radius: 100px;
     transition: 1.5s;
@@ -123,28 +141,103 @@ h2{
     text-shadow: 0 0 5px #DC143C, 0 0 5px #DC143C;
 }
 
-#getStatus{
+#schedule{
     position: absolute;
     left: 35%;
-    top: 70%;
+    top: 66%;
     text-align: center;
-    width: 200px;
+    width: 150px;
     padding: 40px;
-    font-size: 20px;
-    color: #0000FF;
+    font-size: 15px;
+    color: #8A2BE2;
     font-family: poppins;
     font-weight: 400;
-    border: 5px solid #0000FF;
+    border: 5px solid #8A2BE2;
     text-transform: uppercase;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
     cursor: pointer;
     border-radius: 100px;
     transition: 1.5s;
 }
 
-#getStatus:hover{
+#schedule:hover{
+    box-shadow: 0 5px 50px 0 #8A2BE2 inset, 0 5px 50px 0 #8A2BE2,
+    0 5px 50px 0 #8A2BE2 inset, 0 5px 50px 0 #8A2BE2;
+    text-shadow: 0 0 5px #8A2BE2, 0 0 5px #8A2BE2;
+}
+
+#closeButton{
+    position: absolute;
+    left: 55%;
+    top: 66%;
+    text-align: center;
+    width: 100px;
+    padding: 40px;
+    font-size: 15px;
+    color: #DC143C;
+    font-family: poppins;
+    font-weight: 400;
+    border: 5px solid #DC143C;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+#closeButton:hover{
+    box-shadow: 0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C,
+    0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C;
+    text-shadow: 0 0 5px #DC143C, 0 0 5px #DC143C;
+}
+
+#updateButton{
+    position: absolute;
+    left: 15%;
+    top: 66%;
+    text-align: center;
+    width: 100px;
+    padding: 40px;
+    font-size: 15px;
+    color: #0000FF;
+    font-family: poppins;
+    font-weight: 400;
+    border: 5px solid #0000FF;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+#updateButton:hover{
     box-shadow: 0 5px 50px 0 #0000FF inset, 0 5px 50px 0 #0000FF,
     0 5px 50px 0 #0000FF inset, 0 5px 50px 0 #0000FF;
     text-shadow: 0 0 5px #0000FF, 0 0 5px #0000FF;
 }
 
+#popup
+{
+    position: fixed;
+    z-index: 1000;
+    outline-style: solid;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0,.30);
+    background: #F5F5F5;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+#popup.active
+{
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}

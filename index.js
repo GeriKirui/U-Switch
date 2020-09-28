@@ -36,3 +36,10 @@ app.post('/scheduling', (request, response) =>{
     fs.writeFileSync('public/schedule.txt', schedule.str);
     response.json(schedule)
 });
+
+//The client is the one getting
+app.get('/scheduling', (request, response) =>{
+    let x = fs.readFileSync('public/schedule.txt', 'utf8')
+    //console.log(x);
+    response.json(x);
+});

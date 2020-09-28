@@ -20,17 +20,19 @@
         <div type="button" id="schedule" onclick="toggle()">Schedule</div>
     </div>
     <div id="popup">
-        <pre class="tab">Morning                                   Evening</pre>
-        Start Time: &nbsp <input type="text" placeholder = "hh:mm" id="startTime1"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="startTime2"><br><br>
-        Finish Time: <input type="text" id="finishTime1"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="finishTime2">
+        <h2>Change Schedule</h3><br><br><br>
+        <pre class="tab"><h3>       Start                     Finish</h3></pre>
+        Morning: <input type="text" placeholder = "hh:mm" id="startTime1"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="finishTime1"><br><br>
+        Evening: &nbsp<input type="text" id="startTime2"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="finishTime2">
         <div type="button" id="closeButton" onclick="toggle()">Close</div>
         <div type="button" id="updateButton" onclick="processText()">Update</div>
     </div>
     <div class="info"   id="infoContainer">
-        <h2> Switch Status </h2>
-        <span id="switchInfo">
-            <span id="switchStatus"></span>
-        </span>
+        <h2> Device Status </h2>
+        <div id="switchInfo">
+            <div id="switchStatus"></div>
+            <div id="scheduleInfo"></div>
+        </div>
     </div>
     <!-- <input type="checkbox" id="toggleSwitch" onclick="func()"/><br> -->
     <script type="text/javascript">
@@ -62,6 +64,17 @@
 
             fetch('/scheduling', options);
         }
+
+        async function getSchedule(){
+            const response = await fetch('/scheduling');
+            const schedule = await response.json();
+            let split = schedule.split(" ");
+            let text = "Schedule: " + split[0] + " ‒ " + split[1] + ", " + split[2] + " ‒ " + split[3];;
+
+            const scheduleString = document.getElementById("scheduleInfo");
+            scheduleString.textContent = text;
+        }
+        setInterval(getSchedule, 500);
     </script>
     <script>
         let sendData = (state) => {
@@ -85,15 +98,13 @@
             const data = await response.json();
 
             const state = document.getElementById("switchStatus");
-            if(data == 1){state.textContent = "ON";}
-            if(data == 0){state.textContent = "OFF";}
+            state.textContent = "Switch state: ";
+            if(data == 1){state.textContent = state.textContent + "ON";}
+            if(data == 0){state.textContent = state.textContent + "OFF";}
             const now = new Date().toLocaleString();
-            state.textContent = state.textContent + " (Last updated at " + now +")";
-
-            //setTimeout(getData(), 5000);
+            state.textContent = state.textContent + " (Last updated on " + now +")";
         }
-
-        //getData();
+        setInterval(getData, 500);
     </script>
     </div>
 </body>

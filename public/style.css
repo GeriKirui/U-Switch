@@ -10,8 +10,8 @@ body,html{
 #buttonContainer.active
 {
     filter: blur(10px);
-    /* pointer-events: none;
-    user-select: none; */
+    pointer-events: none;
+    user-select: none;
 }
 
 .bg-image{
@@ -56,7 +56,7 @@ h2{
     position: absolute;
     left: 0%;
     top: 30%;
-    outline-style: dotted;
+    /* outline-style: dotted; */
     height: 60%;
     width: 50%;
     color: white;
@@ -82,7 +82,7 @@ h2{
     position: absolute;
     left: 50%;
     top: 30%;
-    outline-style: dotted;
+    /* outline-style: dotted; */
     height: 60%;
     width: 50%;
     color: white;
@@ -240,4 +240,8 @@ h2{
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
+}
+
+#scheduleInfo{
+    text-align: left;
 }

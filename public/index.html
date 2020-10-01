@@ -14,28 +14,110 @@
 <body style="overflow:hidden;">
     <div class="bg-image"></div> 
     <h1> U-Switch </h1>
-    <div class="buttons" id="buttonContainer">
-        <div type="button" id="toggleOn" onclick="sendData(1)">Toggle On</div>
-        <div type="button" id="toggleOff" onclick="sendData(0)">Toggle Off</div>
-        <div type="button" id="schedule" onclick="toggle()">Schedule</div>
+    <div class="clock" id="popup">
+        <div class="hour">
+            <div class="hr" id="hr"></div>
+        </div>
+        <div class="min">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+            <div class="sc" id="sc"></div>
+        </div>
+        <div type="button" id="one_one" onclick="processSchedule('one_one')"></div>
+        <div type="button" id="one_two" onclick="processSchedule('one_two')"></div>
+        <div type="button" id="one_three" onclick="processSchedule('one_three')"></div>
+        <div type="button" id="one_four" onclick="processSchedule('one_four')"></div>
+
+        <div type="button" id="two_one" onclick="processSchedule('two_one')"></div>
+        <div type="button" id="two_two" onclick="processSchedule('two_two')"></div>
+        <div type="button" id="two_three" onclick="processSchedule('two_three')"></div>
+        <div type="button" id="two_four" onclick="processSchedule('two_four')"></div>
+
+        <div type="button" id="three_one" onclick="processSchedule('three_one')"></div>
+        <div type="button" id="three_two" onclick="processSchedule('three_two')"></div>
+        <div type="button" id="three_three" onclick="processSchedule('three_three')"></div>
+        <div type="button" id="three_four" onclick="processSchedule('three_four')"></div>
+
+        <div type="button" id="four_one" onclick="processSchedule('four_one')"></div>
+        <div type="button" id="four_two" onclick="processSchedule('four_two')"></div>
+        <div type="button" id="four_three" onclick="processSchedule('four_three')"></div>
+        <div type="button" id="four_four" onclick="processSchedule('four_four')"></div>
+
+        <div type="button" id="five_one" onclick="processSchedule('five_one')"></div>
+        <div type="button" id="five_two" onclick="processSchedule('five_two')"></div>
+        <div type="button" id="five_three" onclick="processSchedule('five_three')"></div>
+        <div type="button" id="five_four" onclick="processSchedule('five_four')"></div>
+
+        <div type="button" id="six_one" onclick="processSchedule('six_one')"></div>
+        <div type="button" id="six_two" onclick="processSchedule('six_two')"></div>
+        <div type="button" id="six_three" onclick="processSchedule('six_three')"></div>
+        <div type="button" id="six_four" onclick="processSchedule('six_four')"></div>
+
+        <div type="button" id="seven_one" onclick="processSchedule('seven_one')"></div>
+        <div type="button" id="seven_two" onclick="processSchedule('seven_two')"></div>
+        <div type="button" id="seven_three" onclick="processSchedule('seven_three')"></div>
+        <div type="button" id="seven_four" onclick="processSchedule('seven_four')"></div>
+
+        <div type="button" id="eight_one" onclick="processSchedule('eight_one')"></div>
+        <div type="button" id="eight_two" onclick="processSchedule('eight_two')"></div>
+        <div type="button" id="eight_three" onclick="processSchedule('eight_three')"></div>
+        <div type="button" id="eight_four" onclick="processSchedule('eight_four')"></div>
+
+        <div type="button" id="nine_one" onclick="processSchedule('nine_one')"></div>
+        <div type="button" id="nine_two" onclick="processSchedule('nine_two')"></div>
+        <div type="button" id="nine_three" onclick="processSchedule('nine_three')"></div>
+        <div type="button" id="nine_four" onclick="processSchedule('nine_four')"></div>
+
+        <div type="button" id="ten_one" onclick="processSchedule('ten_one')"></div>
+        <div type="button" id="ten_two" onclick="processSchedule('ten_two')"></div>
+        <div type="button" id="ten_three" onclick="processSchedule('ten_three')"></div>
+        <div type="button" id="ten_four" onclick="processSchedule('ten_four')"></div>
+
+        <div type="button" id="eleven_one" onclick="processSchedule('eleven_one')"></div>
+        <div type="button" id="eleven_two" onclick="processSchedule('eleven_two')"></div>
+        <div type="button" id="eleven_three" onclick="processSchedule('eleven_three')"></div>
+        <div type="button" id="eleven_four" onclick="processSchedule('eleven_four')"></div>
+
+        <div type="button" id="twelve_one" onclick="processSchedule('twelve_one')"></div>
+        <div type="button" id="twelve_two" onclick="processSchedule('twelve_two')"></div>
+        <div type="button" id="twelve_three" onclick="processSchedule('twelve_three')"></div>
+        <div type="button" id="twelve_four" onclick="processSchedule('twelve_four')"></div>
+
+        <div type="button" id="back" onclick="toggle()">X</div>
+        <div type="button" id="update" onclick="sendSchedule()">X</div>
     </div>
-    <div id="popup">
-        <h2>Change Schedule</h3><br><br><br>
-        <pre class="tab"><h3>       Start                     Finish</h3></pre>
-        Morning: <input type="text" placeholder = "hh:mm" id="startTime1"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="finishTime1"><br><br>
-        Evening: &nbsp<input type="text" id="startTime2"> &nbsp &nbsp &nbsp &nbsp <input type="text" id="finishTime2">
-        <div type="button" id="closeButton" onclick="toggle()">Close</div>
-        <div type="button" id="updateButton" onclick="processText()">Update</div>
+    <div class="buttons" id="buttonContainer">
+        <div type="button" id="toggleOn" onclick="sendData(1)">Enable</div>
+        <div type="button" id="toggleOff" onclick="sendData(0)">Disable</div>
+        <div type="button" id="schedule" onclick="getSchedule()">Schedule</div>
     </div>
     <div class="info"   id="infoContainer">
         <h2> Device Status </h2>
         <div id="switchInfo">
             <div id="switchStatus"></div>
-            <div id="scheduleInfo"></div>
+            <div id="connectivityInfo"></div>
         </div>
     </div>
     <!-- <input type="checkbox" id="toggleSwitch" onclick="func()"/><br> -->
     <script type="text/javascript">
+        const deg = 6;
+        const hr = document.querySelector('#hr');
+        const mn = document.querySelector('#mn');
+        const sc = document.querySelector('#sc');
+
+        setInterval(() => {
+            let day = new Date();
+            let hh = day.getHours() * 30;
+            let mm = day.getMinutes() * deg;
+            let ss = day.getSeconds() * deg;
+
+            hr.style.transform = `rotateZ(${hh+(mm/12)}deg)`;
+            mn.style.transform = `rotateZ(${mm}deg)`;
+            sc.style.transform = `rotateZ(${ss}deg)`;
+            
+        });
+
         function toggle(){
             var blur = document.getElementById('infoContainer');
             blur.classList.toggle('active');
@@ -43,38 +125,91 @@
             blur.classList.toggle('active');
             var popup = document.getElementById('popup');
             popup.classList.toggle('active')
+            //Request button color from database
         }
 
-        function processText(){
-            let startTime1 = document.getElementById("startTime1").value;
-            let startTime2 = document.getElementById("startTime2").value;
-            let finishTime1 = document.getElementById("finishTime1").value;
-            let finishTime2 = document.getElementById("finishTime2").value;
-            let str = startTime1 + " "+ finishTime1 + " "+ startTime2 + " "+ finishTime2;
+        let schedulePackage = [];
 
-            let scheduleString = { str };
+        function sendSchedule(){
 
             const options = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(scheduleString) 
+                body: JSON.stringify(schedulePackage)
             };
 
             fetch('/scheduling', options);
+            schedulePackage = [];
+            toggle();
+
         }
 
         async function getSchedule(){
+            toggle();
+            let wordVec = ["one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"];
             const response = await fetch('/scheduling');
             const schedule = await response.json();
-            let split = schedule.split(" ");
-            let text = "Schedule: " + split[0] + " ‒ " + split[1] + ", " + split[2] + " ‒ " + split[3];;
 
-            const scheduleString = document.getElementById("scheduleInfo");
-            scheduleString.textContent = text;
+            for(let i = 0; i < schedule.length; i++){
+                let num1 = Math.floor(i/4);
+
+                if (i > 3){
+                num1 = Math.floor(i/4);
+                }
+                else{
+                num1 = 12;
+                }
+                let num2 = (i%4)+1;
+
+                let num1Str = wordVec[num1 - 1];
+                let num2Str = wordVec[num2 - 1];
+                
+                let buttonID = num1Str + "_" + num2Str;
+
+                let button = document.getElementById(buttonID);
+
+                if(schedule[i] == 0){
+                    button.style.background = "red";
+                }
+                else{
+                    button.style.background = "green";
+                }
+            }
+
+
         }
-        setInterval(getSchedule, 500);
+
+        function processSchedule(str){
+            const hr = document.getElementById(str);
+            let buttonID = str.split('_');
+            let num1 = buttonID[0];
+            let num2 = buttonID[1];
+
+            var getStyle = function(element, property) {
+                return window.getComputedStyle ? window.getComputedStyle(element, null).getPropertyValue(property) : element.style[property.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); })];
+                };
+            var backgroundColor = getStyle(hr, "background-color");
+
+            if (backgroundColor == "rgb(0, 128, 0)"){
+                hr.style.background = "red";
+
+                let state = 0;
+                let data = { num1, num2, state };
+                schedulePackage.push(data);
+            }
+            else if(backgroundColor == "rgb(255, 0, 0)"){
+                hr.style.background = "green";
+
+                let state = 1;
+
+                let data = { num1, num2, state };
+                schedulePackage.push(data);
+
+            }
+        }
+
     </script>
     <script>
         let sendData = (state) => {

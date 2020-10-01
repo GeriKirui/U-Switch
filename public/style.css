@@ -1,5 +1,7 @@
 body,html{
     height: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 #infoContainer.active
@@ -56,7 +58,7 @@ h2{
     position: absolute;
     left: 0%;
     top: 30%;
-    /* outline-style: dotted; */
+    outline-style: dotted;
     height: 60%;
     width: 50%;
     color: white;
@@ -82,7 +84,7 @@ h2{
     position: absolute;
     left: 50%;
     top: 30%;
-    /* outline-style: dotted; */
+    outline-style: dotted;
     height: 60%;
     width: 50%;
     color: white;
@@ -218,20 +220,23 @@ h2{
 
 #popup
 {
-    position: fixed;
+    position: absolute;
     z-index: 1000;
-    outline-style: solid;
-    top: 40%;
+    outline-style: dotted;
+    top: 0%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
+    justify-content: center;
+    align-items: center;
     padding: 50px;
     box-shadow: 0 5px 30px rgba(0,0,0,.30);
-    background: #F5F5F5;
+    background: url(clock.png);
+    background-size: cover;
     visibility: hidden;
     opacity: 0;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 #popup.active
@@ -242,6 +247,796 @@ h2{
     transition: 0.5s;
 }
 
+#back{
+    width: 60px;
+    position: absolute;
+    height: 30px;
+    background: red;
+    text-align: center;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    left: 80%;
+    top: 90%;
+}
+
+#back:hover{
+    box-shadow: 0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C,
+    0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C;
+    text-shadow: 0 0 5px #DC143C, 0 0 5px #DC143C;
+}
+
+#update{
+    width: 60px;
+    position: absolute;
+    height: 30px;
+    background: blue;
+    text-align: center;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    left: 5%;
+    top: 90%;
+}
+
+#update:hover{
+    box-shadow: 0 5px 50px 0 blue inset, 0 5px 50px 0 blue,
+    0 5px 50px 0 blue inset, 0 5px 50px 0 blue;
+    text-shadow: 0 0 5px blue, 0 0 5px blue;
+}
+
+.clock:before
+{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 49%;
+    top: 49%;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 10000;
+}
+
+/* .clock .hour,
+.clock .min,
+.clock .sec
+{
+    position: absolute;
+    transform: rotateZ(78deg)
+} */
+
+
+.clock .hr
+{
+    position: absolute;
+    transform: rotateZ(180deg);
+}
+
+.clock .hr
+{
+    width: 160px;
+    height: 160px;
+    left: 33%;
+    top: 33%;
+    /* outline-style: dotted; */
+}
+
+.clock .mn
+{
+    position: absolute;
+    transform: rotateZ(270deg);
+}
+
+.clock .mn
+{
+    width: 190px;
+    height: 190px;
+    left: 29.5%;
+    top: 29.5%;
+    /* outline-style: dotted; */
+
+}
+
+.clock .sc
+{
+    position: absolute;
+    transform: rotateZ(00deg);
+}
+
+.clock .sc
+{
+    width: 230px;
+    height: 230px;
+    left: 25.3%;
+    top: 25.3%;
+    /* outline-style: dotted; */
+}
+
+.hr, .mn, .sc
+{
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hr:before
+{
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 80px;
+    background: #ff105e;
+    z-index: 10;
+    border-radius: 6px 6px 0 0;
+}
+
+.mn:before
+{
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 90px;
+    background: #ffffff;
+    z-index: 11;
+    border-radius: 6px 6px 0 0;
+}
+
+.sc:before
+{
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 150px;
+    background: black;
+    z-index: 12;
+    border-radius: 6px 6px 0 0;
+}
+
+
 #scheduleInfo{
     text-align: left;
 }
+
+#connectivityInfo{
+    text-align: left;
+}
+
+#twelve_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(15deg);
+    left: 51%;
+    top: 2%;
+}
+
+
+#twelve_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(15deg);
+    left: 56.5%;
+    top: 3.25%;
+}
+
+#twelve_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(15deg);
+    left: 62%;
+    top: 4.5%;
+}
+
+#twelve_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(15deg);
+    left: 67.5%;
+    top: 6.5%;
+}
+
+#one_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(45deg);
+    left: 73%;
+    top: 11%;
+}
+
+#one_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(45deg);
+    left: 77%;
+    top: 15%;
+}
+
+#one_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(45deg);
+    left: 81%;
+    top: 19%;
+}
+
+#one_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(45deg);
+    left: 85%;
+    top: 23%;
+}
+
+#two_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(75deg);
+    left: 88%;
+    top: 29%;
+}
+
+#two_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(75deg);
+    left: 89.5%;
+    top: 34%;
+}
+
+#two_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(75deg);
+    left: 91.5%;
+    top: 39%;
+}
+
+#two_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(75deg);
+    left: 93%;
+    top: 44%;
+}
+
+
+#three_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(105deg);
+    left: 93%;
+    top: 53%;
+}
+
+#three_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(105deg);
+    left: 91.5%;
+    top: 58%;
+}
+
+#three_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(105deg);
+    left: 89.5%;
+    top: 63%;
+}
+
+#three_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(105deg);
+    left: 88%;
+    top: 68%;
+}
+
+#four_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(135deg);
+    left: 85%;
+    top: 74%;
+}
+
+#four_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(135deg);
+    left: 81%;
+    top: 78%;
+}
+
+#four_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(135deg);
+    left: 77%;
+    top: 82%;
+}
+
+#four_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(135deg);
+    left: 73%;
+    top: 86%;
+}
+
+
+#five_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(165deg);
+    left: 67.5%;
+    top: 89%;
+}
+
+
+#five_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(165deg);
+    left: 62%;
+    top: 91.25%;
+}
+
+#five_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(165deg);
+    left: 56.5%;
+    top: 92.5%;
+}
+
+#five_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(165deg);
+    left: 51%;
+    top: 93%;
+}
+
+
+#six_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(195);
+    left: 44%;
+    top: 93%;
+}
+
+
+#six_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(195deg);
+    left: 38.5%;
+    top: 92.5%;
+}
+
+#six_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(195deg);
+    left: 33%;
+    top: 90.5%;
+}
+
+#six_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(195deg);
+    left: 27.5%;
+    top: 88%;
+}
+
+#seven_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(225deg);
+    left: 22%;
+    top: 86%;
+}
+
+
+#seven_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(225deg);
+    left: 18%;
+    top: 82%;
+}
+
+#seven_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(225deg);
+    left: 14%;
+    top: 78%;
+}
+
+#seven_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(225deg);
+    left: 10%;
+    top: 74%;
+}
+
+#eight_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(255deg);
+    left: 6%;
+    top: 69%;
+}
+
+#eight_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(255deg);
+    left: 4.5%;
+    top: 64%;
+}
+
+#eight_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(255deg);
+    left: 3%;
+    top: 59%;
+}
+
+#eight_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(255deg);
+    left: 1.5%;
+    top: 54%;
+}
+
+#nine_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(285deg);
+    left: 1.5%;
+    top: 44%;
+}
+
+#nine_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(285deg);
+    left: 3%;
+    top: 39%;
+}
+
+#nine_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(285deg);
+    left: 4.5%;
+    top: 34%;
+}
+
+#nine_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(285deg);
+    left: 6%;
+    top: 29%;
+}
+
+#ten_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(315deg);
+    left: 10%;
+    top: 22%;
+}
+
+#ten_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(315deg);
+    left: 14%;
+    top: 18%;
+}
+
+#ten_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(315deg);
+    left: 18%;
+    top: 14%;
+}
+
+#ten_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(315deg);
+    left: 22%;
+    top: 10%;
+}
+
+#eleven_one{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(345deg);
+    left: 27%;
+    top: 5.8%;
+}
+
+#eleven_two{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(345deg);
+    left: 32.5%;
+    top: 4.5%;
+}
+
+#eleven_three{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(345deg);
+    left: 38%;
+    top: 3.25%;
+}
+
+#eleven_four{
+    width: 20px;
+    position: absolute;
+    height: 20px;
+    background: red;
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    transform: rotateZ(345deg);
+    left: 43.5%;
+    top: 2%;
+}
+
+/* .clock
+{
+    width: 350px;
+    height: 350px;
+} */

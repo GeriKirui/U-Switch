@@ -58,7 +58,7 @@ h2{
     position: absolute;
     left: 0%;
     top: 30%;
-    outline-style: dotted;
+    /* outline-style: dotted; */
     height: 60%;
     width: 50%;
     color: white;
@@ -84,7 +84,7 @@ h2{
     position: absolute;
     left: 50%;
     top: 30%;
-    outline-style: dotted;
+    /* outline-style: dotted; */
     height: 60%;
     width: 50%;
     color: white;

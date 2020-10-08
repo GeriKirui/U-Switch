@@ -1,9 +1,12 @@
 const express = require('express');
 const fs = require('fs');
+const Datastore = require('nedb');
 const wordToNum = require('words-to-numbers')
 const app = express();
 let port = process.env.PORT || 3000;
 app.listen(port, () => console.log('listening at 3000'));
+const database = new Datastore('database.db');
+database.loadDatabase();
 
 app.use(express.static('public'));
 app.use(express.json({ limit: '1mb' }));
@@ -21,6 +24,7 @@ app.get('/api', (request, response) =>{
 app.post('/api', (request, response) =>{
     let data = request.body;
     fs.writeFileSync('public/userState.txt', data.state);
+    database.insert(data);
     response.json(data)
 });
 

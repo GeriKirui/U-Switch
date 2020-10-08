@@ -76,6 +76,8 @@ h2{
     top: 25%;
     left: 5%;
     text-align: center;
+    height: 100%;
+    width: 50%;
     font-size: 20px;
     font-family: sans-serif;
 }
@@ -141,6 +143,60 @@ h2{
     box-shadow: 0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C,
     0 5px 50px 0 #DC143C inset, 0 5px 50px 0 #DC143C;
     text-shadow: 0 0 5px #DC143C, 0 0 5px #DC143C;
+}
+
+#current{
+    position: absolute;
+    left: 35%;
+    top: 40%;
+    text-align: center;
+    width: 150px;
+    padding: 40px;
+    font-size: 15px;
+    color: #FFFF00;
+    font-family: poppins;
+    font-weight: 400;
+    border: 5px solid #FFFF00;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: 1.5s;
+}
+
+#current:hover{
+    box-shadow: 0 5px 50px 0 #FFFF00 inset, 0 5px 50px 0 #FFFF00,
+    0 5px 50px 0 #FFFF00 inset, 0 5px 50px 0 #FFFF00;
+    text-shadow: 0 0 5px #FFFF00, 0 0 5px #FFFF00;
+}
+
+#popupCurrent
+{
+    position: absolute;
+    z-index: 1000;
+    outline-style: dotted;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 350px;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0,.30);
+    background: url(clock.png);
+    background-size: cover;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#popupCurrent.active
+{
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
 }
 
 #schedule{

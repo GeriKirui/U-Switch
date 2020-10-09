@@ -184,7 +184,7 @@ h2{
     align-items: center;
     padding: 50px;
     box-shadow: 0 5px 30px rgba(0,0,0,.30);
-    background: url(clock.png);
+    background-color: white;
     background-size: cover;
     visibility: hidden;
     opacity: 0;

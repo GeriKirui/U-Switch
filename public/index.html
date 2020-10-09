@@ -9,14 +9,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <!-- <script defer src="./index.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 </head>
 
 <body style="overflow:hidden;">
-    <div class="bg-image"></div> 
+    <div class="bg-image"></div>
     <h1> U-Switch </h1>
-    <div class="graph" id="popupCurrent">
-        
+    <div class="container" id="popupCurrent">
+        <canvas id="myChart" width="400" height="400"></canvas>
     </div>
+    <script>
+        let myChart = document.getElementById('myChart').getContext('2d');
+
+        let massPopChart = new Chart(myChart, {
+            type: 'line',
+            data: {
+                labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+                datasets: [{
+                    label: 'Population',
+                    data: [
+                        63854675,
+                        54353456,
+                        46456465,
+                        45365745,
+                        78678678,
+                        5657677
+                    ]
+                }]
+            },
+            options: {}
+        });
+    </script>
     <div class="clock" id="popup">
         <div class="hour">
             <div class="hr" id="hr"></div>
@@ -95,7 +119,7 @@
         <div type="button" id="toggleOff" onclick="sendData(0)">Disable</div>
         <div type="button" id="schedule" onclick="getSchedule()">Schedule</div>
     </div>
-    <div class="info"   id="infoContainer">
+    <div class="info" id="infoContainer">
         <h2> Device Status </h2>
         <div id="switchInfo">
             <div id="switchStatus"></div>
@@ -116,13 +140,13 @@
             let mm = day.getMinutes() * deg;
             let ss = day.getSeconds() * deg;
 
-            hr.style.transform = `rotateZ(${hh+(mm/12)}deg)`;
+            hr.style.transform = `rotateZ(${hh + (mm / 12)}deg)`;
             mn.style.transform = `rotateZ(${mm}deg)`;
             sc.style.transform = `rotateZ(${ss}deg)`;
-            
+
         });
 
-        function toggle(){
+        function toggle() {
             var blur = document.getElementById('infoContainer');
             blur.classList.toggle('active');
             var blur = document.getElementById('buttonContainer');
@@ -132,7 +156,7 @@
             //Request button color from database
         }
 
-        function activityPage(){
+        function activityPage() {
             var blur = document.getElementById('infoContainer');
             blur.classList.toggle('active');
             var blur = document.getElementById('buttonContainer');
@@ -141,13 +165,13 @@
             popupCurrent.classList.toggle('active')
         }
 
-        function getCurrent(){
+        function getCurrent() {
             activityPage();
         }
 
         let schedulePackage = [];
 
-        function sendSchedule(){
+        function sendSchedule() {
 
             const options = {
                 method: 'POST',
@@ -163,34 +187,34 @@
 
         }
 
-        async function getSchedule(){
+        async function getSchedule() {
             toggle();
-            let wordVec = ["one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve"];
+            let wordVec = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
             const response = await fetch('/scheduling');
             const schedule = await response.json();
 
-            for(let i = 0; i < schedule.length; i++){
-                let num1 = Math.floor(i/4);
+            for (let i = 0; i < schedule.length; i++) {
+                let num1 = Math.floor(i / 4);
 
-                if (i > 3){
-                num1 = Math.floor(i/4);
+                if (i > 3) {
+                    num1 = Math.floor(i / 4);
                 }
-                else{
-                num1 = 12;
+                else {
+                    num1 = 12;
                 }
-                let num2 = (i%4)+1;
+                let num2 = (i % 4) + 1;
 
                 let num1Str = wordVec[num1 - 1];
                 let num2Str = wordVec[num2 - 1];
-                
+
                 let buttonID = num1Str + "_" + num2Str;
 
                 let button = document.getElementById(buttonID);
 
-                if(schedule[i] == 0){
+                if (schedule[i] == 0) {
                     button.style.background = "red";
                 }
-                else{
+                else {
                     button.style.background = "green";
                 }
             }
@@ -198,25 +222,25 @@
 
         }
 
-        function processSchedule(str){
+        function processSchedule(str) {
             const hr = document.getElementById(str);
             let buttonID = str.split('_');
             let num1 = buttonID[0];
             let num2 = buttonID[1];
 
-            var getStyle = function(element, property) {
+            var getStyle = function (element, property) {
                 return window.getComputedStyle ? window.getComputedStyle(element, null).getPropertyValue(property) : element.style[property.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); })];
-                };
+            };
             var backgroundColor = getStyle(hr, "background-color");
 
-            if (backgroundColor == "rgb(0, 128, 0)"){
+            if (backgroundColor == "rgb(0, 128, 0)") {
                 hr.style.background = "red";
 
                 let state = 0;
                 let data = { num1, num2, state };
                 schedulePackage.push(data);
             }
-            else if(backgroundColor == "rgb(255, 0, 0)"){
+            else if (backgroundColor == "rgb(255, 0, 0)") {
                 hr.style.background = "green";
 
                 let state = 1;
@@ -251,10 +275,10 @@
 
             const state = document.getElementById("switchStatus");
             state.textContent = "Switch state: ";
-            if(data == 1){state.textContent = state.textContent + "ON";}
-            if(data == 0){state.textContent = state.textContent + "OFF";}
+            if (data == 1) { state.textContent = state.textContent + "ON"; }
+            if (data == 0) { state.textContent = state.textContent + "OFF"; }
             const now = new Date().toLocaleString();
-            state.textContent = state.textContent + " (Last updated on " + now +")";
+            state.textContent = state.textContent + " (Last updated on " + now + ")";
         }
         setInterval(getData, 500);
     </script>

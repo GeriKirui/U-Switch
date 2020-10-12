@@ -7,39 +7,69 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="main.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <!-- <script defer src="./index.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 </head>
 
-<body style="overflow:hidden;">
+<body style="overflow:hidden;" id="bd">
     <div class="bg-image"></div>
     <h1> U-Switch </h1>
+    <div class="container" id="popupPIN">
+        <input type="text" placeholder="PIN" id="inputPIN">
+        <input type="submit" onclick="checkPin()"> 
+    </div>
     <div class="container" id="popupCurrent">
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="myChart" width="800" height="400"></canvas>
     </div>
     <script>
         let myChart = document.getElementById('myChart').getContext('2d');
 
-        let massPopChart = new Chart(myChart, {
-            type: 'line',
-            data: {
-                labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-                datasets: [{
-                    label: 'Population',
-                    data: [
-                        63854675,
-                        54353456,
-                        46456465,
-                        45365745,
-                        78678678,
-                        5657677
-                    ]
-                }]
-            },
-            options: {}
-        });
+        let time = [];
+        let current = [];
+
+        async function getCurrentAndTime() {
+            let dt = new Date();
+            let h = dt.getHours();
+            let m = dt.getMinutes();
+            let s = dt.getSeconds();
+
+            let time_now = String(h) + ":" + String(m) + ":" + String(s);
+            let current_now = 10 * Math.random();
+
+            time.push(time_now);
+            current.push(current_now);
+
+        }
+
+        setInterval(getCurrentAndTime, 1000);
+
+        function print() {
+            activityPage();
+            let massPopChart = new Chart(myChart, {
+                type: 'line',
+                data: {
+                    labels: time,
+                    datasets: [{
+                        label: 'Current (A)',
+                        data: current,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5
+                            }
+                        }],
+                    }
+                }
+            });
+        }
     </script>
     <div class="clock" id="popup">
         <div class="hour">
@@ -124,11 +154,18 @@
         <div id="switchInfo">
             <div id="switchStatus"></div>
             <div id="connectivityInfo"></div>
-            <div type="button" id="current" onclick="getCurrent()">Activity</div>
+            <div type="button" id="current" onclick="print()">Activity</div>
         </div>
     </div>
     <!-- <input type="checkbox" id="toggleSwitch" onclick="func()"/><br> -->
     <script type="text/javascript">
+        
+        function checkPin(){
+            let pin = document.getElementById("inputPIN").value;
+            let hashPIN = 
+            PINpage();
+        }
+        
         const deg = 6;
         const hr = document.querySelector('#hr');
         const mn = document.querySelector('#mn');
@@ -161,13 +198,20 @@
             blur.classList.toggle('active');
             var blur = document.getElementById('buttonContainer');
             blur.classList.toggle('active');
-            var popupCurrrtent = document.getElementById('popupCurrent');
+            var popupCurrent = document.getElementById('popupCurrent');
             popupCurrent.classList.toggle('active')
         }
 
-        function getCurrent() {
-            activityPage();
+        function PINpage(){
+            var blur = document.getElementById('infoContainer');
+            blur.classList.toggle('active');
+            var blur = document.getElementById('buttonContainer');
+            blur.classList.toggle('active');
+            var popupPIN = document.getElementById('popupPIN');
+            popupPIN.classList.toggle('active')
         }
+
+        setTimeout(PINpage,0);
 
         let schedulePackage = [];
 

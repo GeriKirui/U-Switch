@@ -178,8 +178,8 @@ h2{
     top: 0%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 350px;
-    height: 350px;
+    width: 1000px;
+    height: 500px;
     justify-content: center;
     align-items: center;
     padding: 50px;
@@ -197,6 +197,40 @@ h2{
     visibility: visible;
     opacity: 1;
     transition: 0.5s;
+}
+
+#popupPIN
+{
+    position: absolute;
+    z-index: 1000;
+    outline-style: dotted;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    box-shadow: 0 5px 30px rgba(0,0,0,.30);
+    background-size: cover;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+#popupPIN.active
+{
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#inputPIN{
+    position: relative;
+    left: 40%;
+    top: 50%;
 }
 
 #schedule{

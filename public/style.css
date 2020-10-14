@@ -153,21 +153,22 @@ h2{
     width: 150px;
     padding: 40px;
     font-size: 15px;
-    color: #FFFF00;
+    color: black;
     font-family: poppins;
     font-weight: 400;
-    border: 5px solid #FFFF00;
+    border: 5px solid black;
     text-transform: uppercase;
     letter-spacing: 5px;
     cursor: pointer;
     border-radius: 100px;
     transition: 1.5s;
+    
 }
 
 #current:hover{
-    box-shadow: 0 5px 50px 0 #FFFF00 inset, 0 5px 50px 0 #FFFF00,
-    0 5px 50px 0 #FFFF00 inset, 0 5px 50px 0 #FFFF00;
-    text-shadow: 0 0 5px #FFFF00, 0 0 5px #FFFF00;
+    box-shadow: 0 5px 50px 0 black inset, 0 5px 50px 0 black,
+    0 5px 50px 0 black inset, 0 5px 50px 0 black;
+    text-shadow: 0 0 5px black, 0 0 5px black;
 }
 
 #popupCurrent
@@ -491,6 +492,14 @@ h2{
 }
 
 #connectivityInfo{
+    text-align: left;
+}
+
+#switchStatus{
+    text-align: left;
+}
+
+#batteryInfo{
     text-align: left;
 }
 

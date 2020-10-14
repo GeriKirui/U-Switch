@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="main.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
     <!-- <script defer src="./index.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -15,6 +14,7 @@
 </head>
 
 <body style="overflow:hidden;" id="bd">
+    <script type='text/javascript' src="myfunctions.js"></script>
     <div class="bg-image"></div>
     <h1> U-Switch </h1>
     <div class="container" id="popupPIN">
@@ -150,20 +150,42 @@
         <div type="button" id="schedule" onclick="getSchedule()">Schedule</div>
     </div>
     <div class="info" id="infoContainer">
-        <h2> Device Status </h2>
+        <h2 id="deviceHeading"> Device Status </h2>
         <div id="switchInfo">
             <div id="switchStatus"></div>
-            <div id="connectivityInfo"></div>
+            <div id="connectivityInfo">Connectivity: OFF</div>
+            <div id="batteryInfo">Battery: 85%</div>
             <div type="button" id="current" onclick="print()">Activity</div>
+            <div id="myPIN"></div>
         </div>
     </div>
     <!-- <input type="checkbox" id="toggleSwitch" onclick="func()"/><br> -->
     <script type="text/javascript">
         
         function checkPin(){
-            let pin = document.getElementById("inputPIN").value;
-            let hashPIN = 
-            PINpage();
+        let pin = document.getElementById("inputPIN").value;        
+        let password = myFuncs.myHash(pin);
+
+        let packagedPin = {password};
+
+        const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(packagedPin)
+            };
+
+        fetch('/verifyPin', options);
+
+        async function getResponse(){
+        const response = await fetch('/verifyPin');
+        const decision = await response.json();
+
+        if (decision === 1){PINpage();}
+        }
+
+        getResponse();
         }
         
         const deg = 6;
@@ -285,6 +307,7 @@
                 schedulePackage.push(data);
             }
             else if (backgroundColor == "rgb(255, 0, 0)") {
+                
                 hr.style.background = "green";
 
                 let state = 1;
@@ -318,11 +341,12 @@
             const data = await response.json();
 
             const state = document.getElementById("switchStatus");
+            const heading = document.getElementById("deviceHeading");
             state.textContent = "Switch state: ";
             if (data == 1) { state.textContent = state.textContent + "ON"; }
             if (data == 0) { state.textContent = state.textContent + "OFF"; }
             const now = new Date().toLocaleString();
-            state.textContent = state.textContent + " (Last updated on " + now + ")";
+            heading.innerHTML = "Device Status" + " (Last updated on " + now + ")";
         }
         setInterval(getData, 500);
     </script>

@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+var sha256 = require('js-sha256');
 const Datastore = require('nedb');
 const wordToNum = require('words-to-numbers')
 const app = express();
@@ -71,4 +72,23 @@ app.get('/command',(request, response) =>{
 app.post('/myCurrentReadings', (request, response) =>{
     console.log(request.body);
     //fs.writeFileSync('public/switchState.txt', request.body.state);
+});
+
+//A function that handles the PIN
+app.post('/verifyPin', (request, response) =>{
+    let package = request.body;
+    let pin = package.password;
+    fs.writeFileSync('userPin.txt', pin);
+});
+
+app.get('/verifyPin', (request, response) =>{
+    let userPin = fs.readFileSync('userPin.txt', 'utf8');
+
+    if(userPin === sha256('Student1615002')){
+        response.json(1);
+    }
+    else{
+        response.json(0);
+    }
+
 });
